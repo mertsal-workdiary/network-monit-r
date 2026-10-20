@@ -3,7 +3,7 @@ name: Android APK Oluştur
 on:
   workflow_dispatch:
   push:
-    branches: [ "main", "master" ]
+    branches: ["main", "master"]
 
 permissions:
   contents: read
@@ -24,10 +24,12 @@ jobs:
           java-version: "17"
 
       - name: Android SDK kur
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: ""
 
       - name: Gerekli Android paketlerini kur
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+        run: sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Gradle 8.10.2 kur
         uses: gradle/actions/setup-gradle@v4
